@@ -1,6 +1,0 @@
-[submodule "so101_ws/src/so101_ros2"]
-	path = so101_ws/src/so101_ros2
-	url = https://github.com/nimiCurtis/so101_ros2.git
-[submodule "third_party/lerobot"]
-	path = third_party/lerobot
-	url = https://github.com/huggingface/lerobot.git
