@@ -53,11 +53,19 @@ If you configured your container properly, all lerobot command should work prope
 5. Read through [LeRobot's guide](https://huggingface.co/docs/lerobot/il_robots) on imitation learning.  
 Follow [the guide to teleoperate using a camera](https://huggingface.co/docs/lerobot/cameras#setup-cameras).  
 Use both the wrist-mounted camera and the overhead depth camera.  
-Disable uploading your data to the cloud by running with this argument:  
-`--dataset.push_to_hub=False`  
 
 6. Train the policy again after 50 total examples.  
-Record a video of running inference after 50 examples
+    We highly recommend recording a couple episodes before going for all 50 to ensure everything is working properly.  
+    Hihgly recommend recording with the following argument to avoid additional setup:
+    ```bash
+    --dataset.push_to_hub=False
+    ```
+    Highly recommend training with the following argument to avoid additional setup:
+    ```bash
+    --push_to_hub=false
+    ```
+    **Plan for training to take a few hours**  
+    Record a video of running inference after 50 examples.
 
 
 ## Deliverables 
@@ -101,16 +109,17 @@ If a motor has a different version, you will need a Windows computer to change t
 If all motors have the right firmware, try disconnecting and reconnecting the power and trying again.  
 This might take many tries.  
 
+**Q:** When I try to record an example it says the camera times-out even though the camera works during teleoperation?  
+**A:** Check out [this Github issue](https://github.com/huggingface/lerobot/issues/1675).  
+You should be able to record examples at 30fps with the given cameras.  
+
+**Q:** The lerobot-record script hangs at the end, why won't it finish?  
+**A:** Your container might not be able to launch the Rerun GUI, record with ```--display_data=false``` to avoid startup/shutdown issues.  
+
 
 ## Resources
 
-[Lychee AI Hub SO101 Arm Tutorials](https://lycheeai-hub.com/project-so-arm101-x-isaac-sim-x-isaac-lab-tutorial-series)  
-Lychee AI is run by Muammer Bay, he partners with Nvidia to make high quality tutorials for ROS and Nvidia Isaac Sim.  
-Also checkout his YouTube channel for more resources about AI in robotics.
-
-[Georgia Institute of Technology ECE 4560](https://maegantucker.com/ECE4560/assignment1-so101/)  
-This is another robotics course that utilizes the SO101 arm.  
-Click through their labs and lectures for a different approach to these topics.
+[Seeed Studios Wiki Guide for the SO101](https://github.com/Seeed-Studio/wiki-documents/blob/docusaurus-version/docs/Robotics/Robot_Kits/Lerobot/Lerobot_SO100Arm.md)
 
 [Dockefile Keywords List](https://docs.docker.com/reference/dockerfile/)  
 As you modify the given Dockerfile, checkout this list to see what the keywords do.  

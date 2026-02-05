@@ -8,7 +8,8 @@
     "--privileged",
     "--network=host",
     "--gpus", "all",
-    "-e", "DISPLAY=${localEnv:DISPLAY}"
+    "-e", "DISPLAY=${localEnv:DISPLAY}",
+    "-e", "LIBUSB_DEBUG=3"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/ubuntu/techin517,type=bind",
   "workspaceFolder": "/home/ubuntu/techin517",
@@ -17,7 +18,8 @@
     "source=/etc/localtime,target=/etc/localtime,type=bind",
     "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
     "source=/dev,target=/dev,type=bind",
-    "source=/etc/udev,target=/etc/udev,type=bind"
+    "source=/etc/udev,target=/etc/udev,type=bind",
+    "source=/run/udev,target=/run/udev,type=bind,readonly"
   ],
   "postStartCommand": "bash -lc '/home/ubuntu/techin517/docker/setup.sh'",
   "customizations": {
