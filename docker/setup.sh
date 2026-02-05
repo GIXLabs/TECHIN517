@@ -37,6 +37,9 @@ cd /home/ubuntu/techin517/third_party/lerobot
 conda install -y ffmpeg=7.1.1 -c conda-forge
 pip install --break-system-packages catkin_pkg typeguard
 pip install --break-system-packages 'lerobot[all]'
+# support 50-series nvidia GPUs
+pip uninstall torch torchvision torchaudio -y
+pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cu128
 
 # build ros
 cd /home/ubuntu/techin517/so101_ws/src/so101_ros2/
