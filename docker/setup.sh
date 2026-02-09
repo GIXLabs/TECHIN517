@@ -23,6 +23,30 @@ for video_dev in /dev/video*; do
     fi
 done
 
+# Link huggingface cache to persistent storage
+PERSISTENT_HF_DIR="/home/ubuntu/techin517/huggingface"
+HF_CACHE_DIR="/home/ubuntu/.cache/huggingface"
+
+# Create parent directory if it doesn't exist
+mkdir -p "$(dirname "$HF_CACHE_DIR")"
+
+# Remove existing cache dir/link if it exists, then create symlink
+if [ -L "$HF_CACHE_DIR" ]; then
+    # Already a symlink, check if it points to the right place
+    if [ "$(readlink "$HF_CACHE_DIR")" != "$PERSISTENT_HF_DIR" ]; then
+        rm "$HF_CACHE_DIR"
+        ln -s "$PERSISTENT_HF_DIR" "$HF_CACHE_DIR"
+    fi
+elif [ -d "$HF_CACHE_DIR" ]; then
+    # Existing directory - move contents to persistent storage and replace with symlink
+    cp -rn "$HF_CACHE_DIR"/* "$PERSISTENT_HF_DIR"/ 2>/dev/null || true
+    rm -rf "$HF_CACHE_DIR"
+    ln -s "$PERSISTENT_HF_DIR" "$HF_CACHE_DIR"
+else
+    # Doesn't exist, create symlink
+    ln -s "$PERSISTENT_HF_DIR" "$HF_CACHE_DIR"
+fi
+
 # create conda env
 source /opt/conda/etc/profile.d/conda.sh
 conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
