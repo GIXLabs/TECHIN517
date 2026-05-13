@@ -33,12 +33,17 @@ In this lab, we'll begin using Isaac Lab inside of Nvidia's Isaac Sim to explore
 
 1. Clone the class' soa_labs Isaac Lab "external environment" repo:
     ```bash
-    git clone # TODO
+    git clone https://github.com/GIXLabs/soa_lab.git
     ```
 2. Share the repo with the Isaac Lab container.  
     If you clone the repo into your TECHIN517 repo then it should already be shared.  
     If not, add it to the Isaac Lab `docker-compose.yaml` file.
-3. Complete the `TODO` comments in `soa_lab/source/soa_lab/tasks/manager_based/soa_lab/soa_lab_env_cfg.py`.
+3. Write 2 to 3 sentences about the function of each term in environment config.
+4. Install the correct dependencies inside of the container:
+    ```bash
+    /workspace/isaaclab/_isaac_sim/python.sh -m pip install --force-reinstall --no-deps "setuptools==78.1.1"
+    /workspace/isaaclab/_isaac_sim/python.sh -m pip install --no-deps --force-reinstall "rsl-rl-lib==2.3.3"
+    ```
 4. Install the `soa_lab` python library in the Isaac Lab container using:
     ```bash
     cd /workspace/isaaclab
@@ -49,23 +54,32 @@ In this lab, we'll begin using Isaac Lab inside of Nvidia's Isaac Sim to explore
     cd /path/to/your/soa_lab
     isaaclab -p scripts/rsl_rl/train.py --task=Template-Soa-Lab-v0 --num_envs 4096 --max_iterations 10000
     ```
+    You shouldn't need all 10,000 iterations for the robot to learn how to pick up a cube.  
+    Watch the training until it looks like all the arms are completing the task correctly.  
+    You can control-C the training when it works without waiting for all iterations.  
+    This can go faster or slower by changing the number of environments with `--num_envs`.  
 6. Monitor training with [Tensorboard](https://www.tensorflow.org/tensorboard) using:
     ```bash
     docker exec -it isaac-lab-ros2 bash
     cd /workspace/isaaclab
     ./isaaclab.sh -p -m tensorboard.main --logdir /path/to/your/soa_lab/logs/rsl_rl --bind_all
     ```
-    Capture a screenshot of the `Train/mean_reward/time` graph for the deliverables below.
-7. Try changing one of the rewards between +/- 0.1 to 1.0.  
+    Turn on "Reload data" using the gear icon at the top.  
+    Capture a screenshot of the `Train/mean_reward` graph for the deliverables below.
+7. Play the policy on a single arm to verify it worked:
+    ```bash
+    isaaclab -p scripts/rsl_rl/play.py --task=Template-Soa-Lab-v0 --num_envs 1
+    ```
+8. Try changing one of the rewards between +/- 0.5 to 5.0.  
     Train the model again for roughly the same amount of time as your successful run.  
-    Capture a second screenshot of the `Train/mean_reward/time` graph for the deliverable below.
+    Capture a second screenshot of the `Train/mean_reward` graph for the deliverable below.
 
 
 ## Deliverables
 
-1. Submit your completed `soa_lab_env_cfg.py` code.
+1. Submit your code explanation writing.
 
-2. Submit both screenshots of your `Train/mean_reward/time` graph.
+2. Submit both screenshots of your `Train/mean_reward` graph.
 
 3. Submit a video of the SO101 in Isaac Lab successfully picking the cube to the goal position.
 

@@ -104,7 +104,7 @@ Isaac Sim is another simulation platform that includes features for [simulating 
         xacro soa.urdf.xacro > soa.urdf
         ```
     - In Isaac Sim, go to File > Import and choose  
-        `/techin517/ros2_ws/src/soa_ros2/soa_description/urdf/so101_newcalib.urdf`
+        `/techin517/ros2_ws/src/soa_ros2/soa_description/urdf/soa.urdf`
     - Enter the following settings to approximate the physics of the arm in Isaac Sim:
         - Model: Referenced Model
         - USD Output: `/techin517/`
