@@ -38,8 +38,11 @@ In this lab, we'll begin using Isaac Lab inside of Nvidia's Isaac Sim to explore
 2. Share the repo with the Isaac Lab container.  
     If you clone the repo into your TECHIN517 repo then it should already be shared.  
     If not, add it to the Isaac Lab `docker-compose.yaml` file.
-3. Write 2 to 3 sentences about the function of each term in environment config.
-4. Install the correct dependencies inside of the container:
+3. Write 2 to 3 sentences about the function of each term in environment config:
+    ```bash
+    soa_lab/source/soa_lab/soa_lab/tasks/manager_based/soa_lab/soa_lab_env_cfg.py
+    ```
+5. Install the correct dependencies inside of the container:
     ```bash
     /workspace/isaaclab/_isaac_sim/python.sh -m pip install --force-reinstall --no-deps "setuptools==78.1.1"
     /workspace/isaaclab/_isaac_sim/python.sh -m pip install --no-deps --force-reinstall "rsl-rl-lib==2.3.3"
