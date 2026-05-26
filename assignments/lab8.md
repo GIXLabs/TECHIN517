@@ -11,6 +11,7 @@ In this lab, we will learn how to train across a range of these factors to incre
 - Increase domain randomization to make RL policies more robust
 - Evaluate headless training
 
+
 ## Given
 
 - [GIX soa_lab](https://github.com/GIXLabs/soa_lab)  
